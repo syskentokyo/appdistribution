@@ -68,6 +68,8 @@ $appDetaiPageURL = $appBaseURL ."/".DETAIL_APP_DIR;
 
 $appUploadPageURL = $appBaseURL ."/".UPLOAD_APP_DIR;
 
+$appManageDistributionPageURL = $appBaseURL ."/".MANAGE_DISTRIBUTION_DIR;
+
 
 ?>
 <!doctype html>
@@ -89,11 +91,17 @@ $appUploadPageURL = $appBaseURL ."/".UPLOAD_APP_DIR;
 
 <div  class="mx-auto"  style="width: 610px;">
 
-    <h1 class="m-1 mt-5">Done Upload</h1>
-
-    <a href="<?php echo $appUploadPageURL;  ?>" target="_blank">Upload Page</a>
+    <h1 class="mt-5">Done Upload</h1>
 
     <div class="mt-5 row g-3">
+    <a href="<?php echo $appUploadPageURL;  ?>" target="_blank">Upload Page</a>
+    <a href="<?php echo $appManageDistributionPageURL;  ?>" target="_blank">Manage Distribution Page</a>
+    </div>
+
+
+    <div class="mt-5 row g-3">
+
+        <h3>Detail App</h3>
 
         <div class="col-12">
             <label>Data ID</label>

@@ -15,6 +15,7 @@ define ("CURRENT_BASE_URL",(empty($_SERVER['HTTPS']) ? 'http://' : 'https://') .
 const DETAIL_APP_DIR = "download/detailapp.php";
 
 const UPLOAD_APP_DIR = "manager/uploadapp.php";
+const MANAGE_DISTRIBUTION_DIR = "manager/managedistribution.php";
 
 const APP_SAVEDIR = "savedata/app/";
 const APP_SAVEDIR_PATH = "../".APP_SAVEDIR;
