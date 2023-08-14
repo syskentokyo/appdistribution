@@ -30,7 +30,7 @@ namespace Syskentokyo\AppDistribution;
 <form class="mt-5 row g-3"  enctype="multipart/form-data" method="post" action="uploadingapp.php">
 
     <div class="col-12">
-        <label for="inputFile" class="form-label">App File</label>
+        <label for="inputFile" class="form-label">App File(ipa or apk)</label>
         <div class="input-group">
             <input type="file" class="form-control" id="inputFile" name="appfile">
         </div>

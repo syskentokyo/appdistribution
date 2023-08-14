@@ -3,14 +3,21 @@
 namespace Syskentokyo\AppDistribution;
 
 
-enum AppFilePlatform
+enum AppFilePlatform:int
 {
-    case iOS;
-    case Android;
+    case iOS=1;
+    case Android=2;
 }
 
+define ("CURRENT_URL",(empty($_SERVER['HTTPS']) ? 'http://' : 'https://') . $_SERVER['HTTP_HOST'] . $_SERVER['SCRIPT_NAME']);
+define ("CURRENT_BASE_URL",(empty($_SERVER['HTTPS']) ? 'http://' : 'https://') . $_SERVER['HTTP_HOST'] );
 
-const SAVEDIR_BASEPATH = "../savedata/app/";
+const DETAIL_APP_DIR = "download/detailapp.php";
+
+const UPLOAD_APP_DIR = "manager/uploadapp.php";
+
+const APP_SAVEDIR = "savedata/app/";
+const APP_SAVEDIR_PATH = "../".APP_SAVEDIR;
 const DB_FILE_PATH = "../savedata/masterdb/appmaster.sqlite3";
 
 

@@ -5,6 +5,7 @@ namespace Syskentokyo\AppDistribution;
 
 require_once('Commondefine.php');
 require_once ('AppInfoJSON.php');
+require_once ('AppInfo.php');
 
 use PDO;
 
@@ -81,7 +82,70 @@ use PDO;
 
          $res = $stmt->execute();//実行
 
+         $insertDataID=-999;
+
+         if($res === true){
+             $insertDataID = (int) $appDBPdo->lastInsertId();
+             $appDBPdo = null;
+         }else{
+             $appDBPdo = null;
+         }
+
+         return $insertDataID;
+
+     }
+
+
+     public static function SelectFromiOSApp($dataID)
+     {
+         $appDBPdo = self::CreateDB();
+         if($appDBPdo ==null){
+             return;
+         }
+
+         //
+         //
+         //
+
+         //SQL準備
+         $stmt = $appDBPdo->prepare("SELECT * FROM iOSApp WHERE id = :dataID");
+
+
+         $stmt->bindValue( ':dataID', $dataID, SQLITE3_INTEGER);
+
+         $res = $stmt->execute();
+
+
+
+         $appInfo = new AppInfo();
+
+        if( $res ) {
+            $data = $stmt->fetch();
+
+
+            //データ整理
+            $appInfo->dataID = $data["id"];
+            $appInfo->savedirname = $data["savedirname"];
+            $appInfo->memo1 = $data["memo1"];
+            $appInfo->createtime = $data["createtime"];
+
+            $appInfoJSONDic = json_decode($data["appinfo"],true);
+
+            $appInfoJSON = new AppInfoJSON();
+            $appInfoJSON->appid = $appInfoJSONDic["appid"];
+            $appInfoJSON->bundleName = $appInfoJSONDic["bundleName"];
+            $appInfoJSON->xcode = $appInfoJSONDic["xcode"];
+            $appInfoJSON->sdkBuild = $appInfoJSONDic["sdkBuild"];
+            $appInfoJSON->minosverversion = $appInfoJSONDic["minosverversion"];
+            $appInfoJSON->appversion = $appInfoJSONDic["appversion"];
+
+            $appInfo->appInfoJSON = $appInfoJSON;
+        }
+
          $appDBPdo = null;
+
+
+         return $appInfo;
 
      }
 }

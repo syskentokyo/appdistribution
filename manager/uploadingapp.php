@@ -38,16 +38,34 @@ $uploadtedAppFile = $_FILES['appfile'];
 
 $selectPlatform = AppFilePlatform::iOS;
 
-if($validatedPlatform === "1"){
+if((int)$validatedPlatform === AppFilePlatform::iOS->value){
     $selectPlatform = AppFilePlatform::iOS;
 
-}else if($validatedPlatform === "2"){
+}else if((int)$validatedPlatform === AppFilePlatform::Android->value){
     $selectPlatform = AppFilePlatform::Android;
 
 }else{
     exit();
 }
 
+//
+// 　アップロードしたファイルが意図したファイルか軽くチェック
+//
+if( $selectPlatform == AppFilePlatform::iOS){
+    if(!preg_match("/^[^.]+.ipa$/",basename($uploadtedAppFile['name']))){
+        //ipaファイル以外の場合
+        exit();
+    }
+
+}else if( $selectPlatform == AppFilePlatform::Android){
+    if(!preg_match("/^[^.]+.apk$/",basename($uploadtedAppFile['name']))){
+        //ipaファイル以外の場合
+        exit();
+    }
+
+}else{
+
+}
 
 
 //
@@ -55,7 +73,7 @@ if($validatedPlatform === "1"){
 //
 $saveTimeTxt = date("YmdHis");
 $saveDirName ='app'. $saveTimeTxt;
-$saveDirPath = SAVEDIR_BASEPATH . $saveDirName;
+$saveDirPath = APP_SAVEDIR_PATH . $saveDirName;
 
 mkdir($saveDirPath, 0766);
 
@@ -142,7 +160,13 @@ if($selectPlatform === AppFilePlatform::iOS){
 //
 // DBへ保存
 //
-$dbInstance = AppDBManager::InsertToiOSApp($appinfoJson,$saveDirName,$validatedMemo1);
+$insertLastID = AppDBManager::InsertToiOSApp($appinfoJson,$saveDirName,$validatedMemo1);
+
+
+//
+// 完了後のページへ遷移
+//
+header("Location:./uploaddoneapp.php?dataid=".$insertLastID."&platform=".$selectPlatform->value);
 
 
 
