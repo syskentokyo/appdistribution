@@ -12,10 +12,23 @@ enum AppFilePlatform:int
 define ("CURRENT_URL",(empty($_SERVER['HTTPS']) ? 'http://' : 'https://') . $_SERVER['HTTP_HOST'] . $_SERVER['SCRIPT_NAME']);
 define ("CURRENT_BASE_URL",(empty($_SERVER['HTTPS']) ? 'http://' : 'https://') . $_SERVER['HTTP_HOST'] );
 
+const MANAGER_DIR_NAME = "manager";
+
 const DETAIL_APP_DIR = "download/detailapp.php";
 
-const UPLOAD_APP_DIR = "manager/uploadapp.php";
-const MANAGE_DISTRIBUTION_DIR = "manager/managedistribution.php";
+const APP_LIST_DIR = "download/index.php";
+
+const APP_IOS_INSTALL_PLIST_FILEPATH = "download/iosinstallplist.php";
+
+const APP_IOS_INSTALL_PLIST_BASE_XML_FILEPATH = "download/baseplist.xml";
+
+const IOS_ICON_57_PATH = "savedata/icon/icon57.png";
+
+const IOS_ICON_512_PATH = "savedata/icon/icon512.png";
+
+const UPLOAD_APP_DIR = MANAGER_DIR_NAME."/uploadapp.php";
+
+const MANAGE_DISTRIBUTION_DIR = MANAGER_DIR_NAME."/managedistribution.php";
 
 const APP_SAVEDIR = "savedata/app/";
 const APP_SAVEDIR_PATH = "../".APP_SAVEDIR;
