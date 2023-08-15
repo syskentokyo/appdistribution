@@ -29,6 +29,7 @@
 /.idea/
 
 /savedata/*
+
 !/savedata/icon/*
 !/savedata/.gitkeep
 !/savedata/app/.gitkeep
