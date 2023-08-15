@@ -13,6 +13,7 @@ require_once ('../common/AppInfoJSON.php');
 
 use CFPropertyList\CFPropertyList;
 use ZipArchive;
+use ApkParser\Parser;
 
 //
 // 1. パラメータチェック
@@ -145,11 +146,34 @@ if($selectPlatform === AppFilePlatform::iOS){
     $appinfoJson->minosverversion = $infoPlistDataArray["MinimumOSVersion"];
     $appinfoJson->appversion = $infoPlistDataArray["CFBundleShortVersionString"];
 
-
+//
+// DBへ保存
+//
+    $insertLastID = AppDBManager::InsertToiOSApp($appinfoJson,$saveDirName,$validatedMemo1);
 
 
 }else if($selectPlatform === AppFilePlatform::Android){
 
+
+
+    $apk = new \ApkParser\Parser($saveAppFilePath,['manifest_only' => false]);
+    $manifest = $apk->getManifest();
+    $labelResourceId = $apk->getManifest()->getApplication()->getLabel();
+    $appName = $apk->getResources($labelResourceId)[0];
+
+
+    $appinfoJson->bundleName =  $appName;
+    $appinfoJson->appid =  $manifest->getPackageName() ;
+    $appinfoJson->xcode = "No iOS Build";
+    $appinfoJson->androidTargetSDK = $manifest->getTargetSdkLevel();
+    $appinfoJson->androidMinSDK = $manifest->getMinSdkLevel();
+    $appinfoJson->appversion = $manifest->getVersionName();
+
+
+    //
+    // DBへ保存
+    //
+    $insertLastID = AppDBManager::InsertToAndroidApp($appinfoJson,$saveDirName,$validatedMemo1);
 
 }
 
@@ -157,10 +181,7 @@ if($selectPlatform === AppFilePlatform::iOS){
 
 
 
-//
-// DBへ保存
-//
-$insertLastID = AppDBManager::InsertToiOSApp($appinfoJson,$saveDirName,$validatedMemo1);
+
 
 
 //

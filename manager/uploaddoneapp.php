@@ -50,7 +50,7 @@ if($selectPlatform === AppFilePlatform::iOS){
 
 }else if($selectPlatform ===  AppFilePlatform::Android){
 
-
+    $appInfo =   AppDBManager::SelectFromAndroidApp($lastDataID);
 
 }else{
     exit();
@@ -117,13 +117,7 @@ $appManageDistributionPageURL = $appBaseURL ."/".MANAGE_DISTRIBUTION_DIR;
             </div>
         </div>
 
-        <div class="col-12">
-            <label>App File URL</label>
-            <div class="input-group">
 
-                <a href="<?php echo $appDetaiPageURL."?dataid=".$lastDataID . "&platform=".$selectPlatform->value;  ?>" target="_blank">Detail App</a>
-            </div>
-        </div>
 
         <div class="col-12">
             <label>App ID</label>
@@ -147,26 +141,6 @@ $appManageDistributionPageURL = $appBaseURL ."/".MANAGE_DISTRIBUTION_DIR;
             </div>
         </div>
 
-        <div class="col-12">
-            <label>Xcode</label>
-            <div class="input-group">
-                <?php echo $appInfo->appInfoJSON->xcode;  ?>
-            </div>
-        </div>
-
-        <div class="col-12">
-            <label>SDK Build</label>
-            <div class="input-group">
-                <?php echo $appInfo->appInfoJSON->sdkBuild;  ?>
-            </div>
-        </div>
-
-        <div class="col-12">
-            <label>Min OS Version</label>
-            <div class="input-group">
-                <?php echo $appInfo->appInfoJSON->minosverversion;  ?>
-            </div>
-        </div>
 
 
         <div class="col-12">
@@ -176,6 +150,73 @@ $appManageDistributionPageURL = $appBaseURL ."/".MANAGE_DISTRIBUTION_DIR;
             </div>
         </div>
 
+        <?php
+        if($selectPlatform === AppFilePlatform::iOS){
+
+            ?>
+
+            <div class="col-12">
+                <label>App File URL</label>
+                <div class="input-group">
+
+                    <a href="<?php echo $appDetaiPageURL."?dataid=".$lastDataID . "&platform=".$selectPlatform->value;  ?>" target="_blank">Detail App</a>
+                </div>
+            </div>
+
+
+            <div class="col-12">
+                <label>Xcode</label>
+                <div class="input-group">
+                    <?php echo $appInfo->appInfoJSON->xcode;  ?>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <label>SDK Build</label>
+                <div class="input-group">
+                    <?php echo $appInfo->appInfoJSON->sdkBuild;  ?>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <label>Min OS Version</label>
+                <div class="input-group">
+                    <?php echo $appInfo->appInfoJSON->minosverversion;  ?>
+                </div>
+            </div>
+
+        <?php
+        }else if($selectPlatform ===  AppFilePlatform::Android){
+
+        ?>
+
+            <div class="col-12">
+                <label>App File URL</label>
+                <div class="input-group">
+
+                    <a href="<?php echo $appDetaiPageURL."?dataid=".$lastDataID . "&platform=".$selectPlatform->value;  ?>" target="_blank">Detail App</a>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <label>Min SDK Version</label>
+                <div class="input-group">
+                    <?php echo $appInfo->appInfoJSON->androidMinSDK;  ?>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <label>Target SDK Version</label>
+                <div class="input-group">
+                    <?php echo $appInfo->appInfoJSON->androidTargetSDK;  ?>
+                </div>
+            </div>
+
+
+
+       <?php
+        }
+        ?>
 
 
     </div>

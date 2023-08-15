@@ -50,7 +50,7 @@ if($selectPlatform === AppFilePlatform::iOS){
 
 }else if($selectPlatform ===  AppFilePlatform::Android){
 
-
+    $appInfo =   AppDBManager::SelectFromAndroidApp($lastDataID);
 
 }else{
     exit();
@@ -66,6 +66,7 @@ for($i=1;$i < (count($dirArray)-2);$i++){
 //アプリ詳細ページのURL
 $appListPageURL = $appBaseURL ."/".APP_LIST_DIR;
 $iosInstallPlistURL =$appBaseURL ."/".APP_IOS_INSTALL_PLIST_FILEPATH;
+$androidAPKURL =$appBaseURL ."/".APP_SAVEDIR.$appInfo->savedirname."/".SAVEDIR_APP_ANDROID_FILE_NAME;
 
 ?>
 <!doctype html>
@@ -129,12 +130,13 @@ $iosInstallPlistURL =$appBaseURL ."/".APP_IOS_INSTALL_PLIST_FILEPATH;
 
                 }else if($selectPlatform === AppFilePlatform::Android){
 
-
+                    echo "<a class=\"btn btn-primary btn-lg col-6\" href=\"".$androidAPKURL."\">Install</a>";
 
                 }
                 ?>
             </div>
         </div>
+
 
     </div>
     <div class="m-5 row g-3">
@@ -163,33 +165,70 @@ $iosInstallPlistURL =$appBaseURL ."/".APP_IOS_INSTALL_PLIST_FILEPATH;
         </div>
 
         <div class="col-12">
-            <label>Xcode</label>
-            <div class="input-group">
-                <?php echo $appInfo->appInfoJSON->xcode;  ?>
-            </div>
-        </div>
-
-        <div class="col-12">
-            <label>SDK Build</label>
-            <div class="input-group">
-                <?php echo $appInfo->appInfoJSON->sdkBuild;  ?>
-            </div>
-        </div>
-
-        <div class="col-12">
-            <label>Min OS Version</label>
-            <div class="input-group">
-                <?php echo $appInfo->appInfoJSON->minosverversion;  ?>
-            </div>
-        </div>
-
-
-        <div class="col-12">
             <label>Create Date</label>
             <div class="input-group">
                 <?php echo $appInfo->createtime;  ?>
             </div>
         </div>
+
+
+
+        <?php
+        if($selectPlatform === AppFilePlatform::iOS){
+
+            ?>
+
+
+
+
+            <div class="col-12">
+                <label>Xcode</label>
+                <div class="input-group">
+                    <?php echo $appInfo->appInfoJSON->xcode;  ?>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <label>SDK Build</label>
+                <div class="input-group">
+                    <?php echo $appInfo->appInfoJSON->sdkBuild;  ?>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <label>Min OS Version</label>
+                <div class="input-group">
+                    <?php echo $appInfo->appInfoJSON->minosverversion;  ?>
+                </div>
+            </div>
+
+            <?php
+        }else if($selectPlatform ===  AppFilePlatform::Android){
+
+            ?>
+
+
+
+            <div class="col-12">
+                <label>Min SDK Version</label>
+                <div class="input-group">
+                    <?php echo $appInfo->appInfoJSON->androidMinSDK;  ?>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <label>Target SDK Version</label>
+                <div class="input-group">
+                    <?php echo $appInfo->appInfoJSON->androidTargetSDK;  ?>
+                </div>
+            </div>
+
+
+
+            <?php
+        }
+        ?>
+
 
 
 
