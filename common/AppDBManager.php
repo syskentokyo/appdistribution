@@ -519,6 +519,34 @@ use PDO;
      }
 
 
+     public static function UpdateDistributionActive($dataID,$setActive)
+     {
+         $appDBPdo = self::CreateDB();
+         if($appDBPdo ==null){
+             return;
+         }
+
+         //
+         //
+         //
+
+         //SQL準備
+         $stmt = $appDBPdo->prepare("UPDATE  distributionlist SET isactive = :isactive WHERE id = :dataID");
+
+         $stmt->bindValue( ':isactive', $setActive, SQLITE3_INTEGER);
+         $stmt->bindValue( ':dataID', $dataID, SQLITE3_INTEGER);
+
+         $res = $stmt->execute();
+
+
+         $appDBPdo = null;
+
+
+         return;
+
+     }
+
+
 
  }
 
