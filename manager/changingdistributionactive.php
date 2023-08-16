@@ -12,9 +12,6 @@ require_once('../common/AppDBManager.php');
 require_once ('../common/AppInfoJSON.php');
 require_once ('../common/DistributionInfo.php');
 
-use CFPropertyList\CFPropertyList;
-use ZipArchive;
-use ApkParser\Parser;
 use Valitron;
 
 //
@@ -57,7 +54,7 @@ $insertLastID = AppDBManager::UpdateDistributionActive($validatedDataID,$validat
 //
 // 完了後のページへ遷移
 //
-header("Location:./managedistribution.php");
+header("Location:./index.php");
 
 
 

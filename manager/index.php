@@ -92,6 +92,7 @@ $appCreateDistributionPageURL = $appBaseURL ."/".CREATE_DISTRIBUTION_DIR;
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid" style="width: 610px;">
+        <a href="<?php echo $appListPageURL;  ?>" target="_blank">App List Page</a>
         <a href="<?php echo $appUploadPageURL;  ?>" >Upload Page</a>
         <a href="<?php echo $appManageDistributionPageURL;  ?>" >Manage Distribution Page</a>
         <a href="<?php echo $appCreateDistributionPageURL;  ?>" >Create Distribution Page</a>

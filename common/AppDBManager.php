@@ -518,6 +518,56 @@ use PDO;
 
      }
 
+     public static function SelectActiveOnlyFromDitribution()
+     {
+         $appDBPdo = self::CreateDB();
+         if($appDBPdo ==null){
+             return;
+         }
+
+         //
+         //
+         //
+
+         //SQL準備
+         $stmt = $appDBPdo->prepare("SELECT * FROM distributionlist WHERE isactive=1 ORDER BY id DESC");
+
+
+         $res = $stmt->execute();
+
+
+
+         $validatedDataArray = array();
+
+         if( $res ) {
+             $dataArray = $stmt->fetchAll();
+
+
+             foreach ($dataArray as $data) {
+
+                 $distributionInfo = new DistributionInfo();
+
+                 //データ整理
+                 $distributionInfo->dataid = $data["id"];
+                 $distributionInfo->iosappid = $data["iosappid"];
+                 $distributionInfo->androidappid = $data["androidappid"];
+                 $distributionInfo->detailmemo = $data["detailmemo"];
+                 $distributionInfo->isActive = $data["isactive"];
+                 $distributionInfo->createtime = $data["createtime"];
+
+
+
+                 //配列へ追加
+                 $validatedDataArray[]=$distributionInfo;
+             }
+         }
+         $appDBPdo = null;
+
+
+         return $validatedDataArray;
+
+     }
+
 
      public static function UpdateDistributionActive($dataID,$setActive)
      {
