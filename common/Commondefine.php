@@ -30,6 +30,8 @@ const UPLOAD_APP_DIR = MANAGER_DIR_NAME."/uploadapp.php";
 
 const MANAGE_DISTRIBUTION_DIR = MANAGER_DIR_NAME."/managedistribution.php";
 
+const CREATE_DISTRIBUTION_DIR = MANAGER_DIR_NAME."/createdistribution.php";
+
 const APP_SAVEDIR = "savedata/app/";
 const APP_SAVEDIR_PATH = "../".APP_SAVEDIR;
 const DB_FILE_PATH = "../savedata/masterdb/appmaster.sqlite3";
