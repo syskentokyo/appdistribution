@@ -38,7 +38,7 @@ foreach ($distributionInfoArray as  $distributionInfo) {
     }
 
     if ($distributionInfo->androidappid > 0) {
-        $androidAppInfo = AppDBManager::SelectFromiOSApp($distributionInfo->androidappid);
+        $androidAppInfo = AppDBManager::SelectFromAndroidApp($distributionInfo->androidappid);
     }
 
     $distributionCollectionInfo->iosAppInfo =$iosAppInfo;
