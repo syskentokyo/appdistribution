@@ -4,12 +4,9 @@ namespace Syskentokyo\AppDistribution;
 require_once( '../vendor/autoload.php' );
 
 
-require_once('./common/Commondefine.php');
-require_once('./common/AppDBManager.php');
-require_once('./common/AppInfoJSON.php');
-require_once('./common/AppInfo.php');
-require_once('./common/DistributionInfo.php');
-require_once('./common/DistributionCollectionInfo.php');
+
+require_once('./common/commonrequireall.php');
+
 
 use Valitron;
 

@@ -4,11 +4,7 @@ namespace Syskentokyo\AppDistribution;
 require_once( '../vendor/autoload.php' );
 
 
-require_once('../app/common/Commondefine.php');
-require_once('../app/common/AppDBManager.php');
-require_once('../app/common/AppInfoJSON.php');
-require_once('../app/common/AppInfo.php');
-
+require_once('../app/common/commonrequireall.php');
 use Valitron;
 
 $validatorGet = new Valitron\Validator($_GET);
