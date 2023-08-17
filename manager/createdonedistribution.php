@@ -33,7 +33,7 @@ if($distributionInfo->iosappid > 0){
 }
 
 if($distributionInfo->androidappid > 0){
-    $androidAppInfo = AppDBManager::SelectFromiOSApp($distributionInfo->androidappid);
+    $androidAppInfo = AppDBManager::SelectFromAndroidApp($distributionInfo->androidappid);
 }
 
 
