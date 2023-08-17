@@ -77,15 +77,12 @@ $appCreateDistributionPageURL = $appBaseURL ."/".CREATE_DISTRIBUTION_DIR;
 
 </head>
 <body>
-
+<?php
+require_once('./commonheader.php');
+?>
 <div  class="mx-auto"  style="width: 610px;">
 
     <h1 class="mt-5">Done Create Distribution</h1>
-
-    <div class="mt-5 row g-3">
-        <a href="<?php echo $appUploadPageURL;  ?>" target="_blank">Upload Page</a>
-        <a href="<?php echo $appManageDistributionPageURL;  ?>" target="_blank">Manage Distribution Page</a>
-    </div>
 
 
     <div class="mt-5 row g-3">

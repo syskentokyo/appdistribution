@@ -21,7 +21,9 @@ namespace Syskentokyo\AppDistribution;
 
 </head>
 <body>
-
+<?php
+require_once('./commonheader.php');
+?>
 <div  class="mx-auto"  style="width: 610px;">
 
 <h1 class="m-1 mt-5">Upload App File</h1>

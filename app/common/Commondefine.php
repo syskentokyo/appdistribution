@@ -14,19 +14,23 @@ define ("CURRENT_BASE_URL",(empty($_SERVER['HTTPS']) ? 'http://' : 'https://') .
 
 const MANAGER_DIR_NAME = "manager";
 
-const DETAIL_APP_DIR = "app/detailapp.php";
+const USER_DIR_NAME = "app";
 
-const APP_LIST_DIR = "app/index.php";
+const SAVEDATA_DIR_NAME = "savedata";
 
-const DETAIL_DISTRIBUTION_DIR = "app/detaildistribution.php";
+const DETAIL_APP_DIR = USER_DIR_NAME."/detailapp.php";
 
-const APP_IOS_INSTALL_PLIST_FILEPATH = "app/iosinstallplist.php";
+const APP_LIST_DIR = USER_DIR_NAME."/index.php";
 
-const APP_IOS_INSTALL_PLIST_BASE_XML_FILEPATH = "app/baseplist.xml";
+const DETAIL_DISTRIBUTION_DIR = USER_DIR_NAME."/detaildistribution.php";
 
-const IOS_ICON_57_PATH = "savedata/icon/icon57.png";
+const APP_IOS_INSTALL_PLIST_FILEPATH = USER_DIR_NAME."/iosinstallplist.php";
 
-const IOS_ICON_512_PATH = "savedata/icon/icon512.png";
+const APP_IOS_INSTALL_PLIST_BASE_XML_FILEPATH = USER_DIR_NAME."/baseplist.xml";
+
+const IOS_ICON_57_PATH = SAVEDATA_DIR_NAME."/icon/icon57.png";
+
+const IOS_ICON_512_PATH = SAVEDATA_DIR_NAME."/icon/icon512.png";
 
 const UPLOAD_APP_DIR = MANAGER_DIR_NAME."/uploadapp.php";
 
@@ -34,9 +38,9 @@ const MANAGE_DISTRIBUTION_DIR = MANAGER_DIR_NAME."/index.php";
 
 const CREATE_DISTRIBUTION_DIR = MANAGER_DIR_NAME."/createdistribution.php";
 
-const APP_SAVEDIR = "app/savedata/app/";
+const APP_SAVEDIR = USER_DIR_NAME."/".SAVEDATA_DIR_NAME."/app/";
 const APP_SAVEDIR_PATH = "../".APP_SAVEDIR;
-const DB_FILE_PATH = "../savedata/masterdb/appmaster.sqlite3";
+const DB_FILE_PATH = "../".SAVEDATA_DIR_NAME."/masterdb/appmaster.sqlite3";
 
 
 const SAVEDIR_APP_IOS_FILE_NAME = "main.ipa";

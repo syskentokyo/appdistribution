@@ -88,12 +88,9 @@ $appCreateDistributionPageURL = $appBaseURL ."/".CREATE_DISTRIBUTION_DIR;
 
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid" style="width: 610px;">
-        <a class="navbar-brand" href="<?php echo $appListPageURL;  ?>" >App List Page</a>
-
-    </div>
-</nav>
+<?php
+require_once('./commonheader.php');
+?>
 <div  class="mx-auto"  style="width: 610px;">
 
     <h1 class="mt-5">Distribution List</h1>

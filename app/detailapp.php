@@ -82,12 +82,9 @@ $androidAPKURL =$appBaseURL ."/".APP_SAVEDIR.$appInfo->savedirname."/".SAVEDIR_A
 
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid" style="width: 610px;">
-        <a class="navbar-brand" href="<?php echo $appListPageURL;  ?>" target="_blank">App List Page</a>
-
-    </div>
-</nav>
+<?php
+require_once('./commonheader.php');
+?>
 <div  class="mx-auto"  style="width: 610px;">
 
     <h1 class="m-3">Install App</h1>
