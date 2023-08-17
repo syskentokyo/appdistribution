@@ -4,10 +4,10 @@ namespace Syskentokyo\AppDistribution;
 require_once( '../vendor/autoload.php' );
 
 
-require_once('../common/Commondefine.php');
-require_once('../common/AppDBManager.php');
-require_once ('../common/AppInfoJSON.php');
-require_once ('../common/AppInfo.php');
+require_once('./common/Commondefine.php');
+require_once('./common/AppDBManager.php');
+require_once('./common/AppInfoJSON.php');
+require_once('./common/AppInfo.php');
 
 use Valitron;
 
@@ -126,7 +126,7 @@ $androidAPKURL =$appBaseURL ."/".APP_SAVEDIR.$appInfo->savedirname."/".SAVEDIR_A
                 <?php
                 if($selectPlatform === AppFilePlatform::iOS){
 
-                    echo "<a class=\"btn btn-primary btn-lg col-6\" href=\"itms-services://?action=download-manifest&url=".$iosInstallPlistURL ."?dataid=".$lastDataID . "&platform=".$selectPlatform->value."\">Install</a>";
+                    echo "<a class=\"btn btn-primary btn-lg col-6\" href=\"itms-services://?action=app-manifest&url=".$iosInstallPlistURL ."?dataid=".$lastDataID . "&platform=".$selectPlatform->value."\">Install</a>";
 
                 }else if($selectPlatform === AppFilePlatform::Android){
 

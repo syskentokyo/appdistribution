@@ -28,9 +28,9 @@
 
 /.idea/
 
-/savedata/*
+/app/savedata/*
 
-!/savedata/icon/*
-!/savedata/.gitkeep
-!/savedata/app/.gitkeep
-!/savedata/masterdb/.gitkeep
+!/app/savedata/icon/*
+!/app/savedata/.gitkeep
+!/app/savedata/app/.gitkeep
+!/app/savedata/masterdb/.gitkeep

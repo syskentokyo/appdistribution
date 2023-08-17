@@ -4,15 +4,15 @@ namespace Syskentokyo\AppDistribution;
 
 
 require_once('Commondefine.php');
-require_once ('AppInfoJSON.php');
-require_once ('AppInfo.php');
-require_once ('DistributionInfo.php');
+require_once('AppInfoJSON.php');
+require_once('AppInfo.php');
+require_once('DistributionInfo.php');
 
 use PDO;
 
  class AppDBManager{
     private static function CreateDB():?PDO {
-        $dbpath =__DIR__."/". DB_FILE_PATH ;
+        $dbpath = __DIR__ . "AppDBManager.php/" . DB_FILE_PATH ;
 
         $dboptions = [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION

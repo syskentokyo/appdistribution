@@ -14,15 +14,15 @@ define ("CURRENT_BASE_URL",(empty($_SERVER['HTTPS']) ? 'http://' : 'https://') .
 
 const MANAGER_DIR_NAME = "manager";
 
-const DETAIL_APP_DIR = "download/detailapp.php";
+const DETAIL_APP_DIR = "app/detailapp.php";
 
-const APP_LIST_DIR = "download/index.php";
+const APP_LIST_DIR = "app/index.php";
 
-const DETAIL_DISTRIBUTION_DIR = "download/detaildistribution.php";
+const DETAIL_DISTRIBUTION_DIR = "app/detaildistribution.php";
 
-const APP_IOS_INSTALL_PLIST_FILEPATH = "download/iosinstallplist.php";
+const APP_IOS_INSTALL_PLIST_FILEPATH = "app/iosinstallplist.php";
 
-const APP_IOS_INSTALL_PLIST_BASE_XML_FILEPATH = "download/baseplist.xml";
+const APP_IOS_INSTALL_PLIST_BASE_XML_FILEPATH = "app/baseplist.xml";
 
 const IOS_ICON_57_PATH = "savedata/icon/icon57.png";
 
@@ -34,7 +34,7 @@ const MANAGE_DISTRIBUTION_DIR = MANAGER_DIR_NAME."/index.php";
 
 const CREATE_DISTRIBUTION_DIR = MANAGER_DIR_NAME."/createdistribution.php";
 
-const APP_SAVEDIR = "savedata/app/";
+const APP_SAVEDIR = "app/savedata/app/";
 const APP_SAVEDIR_PATH = "../".APP_SAVEDIR;
 const DB_FILE_PATH = "../savedata/masterdb/appmaster.sqlite3";
 
