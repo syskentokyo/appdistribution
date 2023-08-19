@@ -27,3 +27,10 @@
 
 
 /.idea/
+
+/app/savedata/*
+
+!/app/savedata/icon/*
+!/app/savedata/.gitkeep
+!/app/savedata/app/.gitkeep
+!/app/savedata/masterdb/.gitkeep

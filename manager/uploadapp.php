@@ -21,7 +21,9 @@ namespace Syskentokyo\AppDistribution;
 
 </head>
 <body>
-
+<?php
+require_once('./commonheader.php');
+?>
 <div  class="mx-auto"  style="width: 610px;">
 
 <h1 class="m-1 mt-5">Upload App File</h1>
@@ -30,7 +32,7 @@ namespace Syskentokyo\AppDistribution;
 <form class="mt-5 row g-3"  enctype="multipart/form-data" method="post" action="uploadingapp.php">
 
     <div class="col-12">
-        <label for="inputFile" class="form-label">App File</label>
+        <label for="inputFile" class="form-label">App File(ipa or apk)</label>
         <div class="input-group">
             <input type="file" class="form-control" id="inputFile" name="appfile">
         </div>

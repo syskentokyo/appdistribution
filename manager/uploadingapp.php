@@ -7,12 +7,11 @@ namespace Syskentokyo\AppDistribution;
 require_once( '../vendor/autoload.php' );
 
 
-require_once('../common/Commondefine.php');
-require_once('../common/AppDBManager.php');
-require_once ('../common/AppInfoJSON.php');
+require_once('../app/common/commonrequireall.php');
 
 use CFPropertyList\CFPropertyList;
 use ZipArchive;
+use ApkParser\Parser;
 
 //
 // 1. パラメータチェック
@@ -38,16 +37,34 @@ $uploadtedAppFile = $_FILES['appfile'];
 
 $selectPlatform = AppFilePlatform::iOS;
 
-if($validatedPlatform === "1"){
+if((int)$validatedPlatform === AppFilePlatform::iOS->value){
     $selectPlatform = AppFilePlatform::iOS;
 
-}else if($validatedPlatform === "2"){
+}else if((int)$validatedPlatform === AppFilePlatform::Android->value){
     $selectPlatform = AppFilePlatform::Android;
 
 }else{
     exit();
 }
 
+//
+// 　アップロードしたファイルが意図したファイルか軽くチェック
+//
+if( $selectPlatform == AppFilePlatform::iOS){
+    if(!preg_match("/^[^.]+.ipa$/",basename($uploadtedAppFile['name']))){
+        //ipaファイル以外の場合
+        exit();
+    }
+
+}else if( $selectPlatform == AppFilePlatform::Android){
+    if(!preg_match("/^[^.]+.apk$/",basename($uploadtedAppFile['name']))){
+        //ipaファイル以外の場合
+        exit();
+    }
+
+}else{
+
+}
 
 
 //
@@ -55,7 +72,7 @@ if($validatedPlatform === "1"){
 //
 $saveTimeTxt = date("YmdHis");
 $saveDirName ='app'. $saveTimeTxt;
-$saveDirPath = SAVEDIR_BASEPATH . $saveDirName;
+$saveDirPath = APP_SAVEDIR_PATH . $saveDirName;
 
 mkdir($saveDirPath, 0766);
 
@@ -127,11 +144,34 @@ if($selectPlatform === AppFilePlatform::iOS){
     $appinfoJson->minosverversion = $infoPlistDataArray["MinimumOSVersion"];
     $appinfoJson->appversion = $infoPlistDataArray["CFBundleShortVersionString"];
 
-
+//
+// DBへ保存
+//
+    $insertLastID = AppDBManager::InsertToiOSApp($appinfoJson,$saveDirName,$validatedMemo1);
 
 
 }else if($selectPlatform === AppFilePlatform::Android){
 
+
+
+    $apk = new \ApkParser\Parser($saveAppFilePath,['manifest_only' => false]);
+    $manifest = $apk->getManifest();
+    $labelResourceId = $apk->getManifest()->getApplication()->getLabel();
+    $appName = $apk->getResources($labelResourceId)[0];
+
+
+    $appinfoJson->bundleName =  $appName;
+    $appinfoJson->appid =  $manifest->getPackageName() ;
+    $appinfoJson->xcode = "No iOS Build";
+    $appinfoJson->androidTargetSDK = $manifest->getTargetSdkLevel();
+    $appinfoJson->androidMinSDK = $manifest->getMinSdkLevel();
+    $appinfoJson->appversion = $manifest->getVersionName();
+
+
+    //
+    // DBへ保存
+    //
+    $insertLastID = AppDBManager::InsertToAndroidApp($appinfoJson,$saveDirName,$validatedMemo1);
 
 }
 
@@ -139,10 +179,13 @@ if($selectPlatform === AppFilePlatform::iOS){
 
 
 
+
+
+
 //
-// DBへ保存
+// 完了後のページへ遷移
 //
-$dbInstance = AppDBManager::InsertToiOSApp($appinfoJson,$saveDirName,$validatedMemo1);
+header("Location:./uploaddoneapp.php?dataid=".$insertLastID."&platform=".$selectPlatform->value);
 
 
 

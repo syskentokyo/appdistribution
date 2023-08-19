@@ -1,6 +1,7 @@
 {
     "require": {
         "vlucas/valitron": "^1.4",
-        "rodneyrehm/plist": "^2.0"
+        "rodneyrehm/plist": "^2.0",
+        "tufanbarisyildirim/php-apk-parser": "^3.0"
     }
 }

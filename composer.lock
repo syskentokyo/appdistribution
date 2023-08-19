@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0a18c2164920ae406a9d8cf2a9781b60",
+    "content-hash": "ce10a1be32f28e74ed91ddb550033e5d",
     "packages": [
         {
             "name": "rodneyrehm/plist",
@@ -74,6 +74,62 @@
                 "source": "https://github.com/TECLIB/CFPropertyList"
             },
             "time": "2021-12-01T18:24:28+00:00"
+        },
+        {
+            "name": "tufanbarisyildirim/php-apk-parser",
+            "version": "3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tufanbarisyildirim/php-apk-parser.git",
+                "reference": "b7d008c8aad9c43058272103f16a8bd8064e65d2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tufanbarisyildirim/php-apk-parser/zipball/b7d008c8aad9c43058272103f16a8bd8064e65d2",
+                "reference": "b7d008c8aad9c43058272103f16a8bd8064e65d2",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-libxml": "*",
+                "ext-mbstring": "*",
+                "ext-simplexml": "*",
+                "ext-zip": "*",
+                "php": ">=8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "ApkParser": "lib"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tufan Baris YILDIRIM",
+                    "email": "tufanbarisyildirim@gmail.com",
+                    "homepage": "http://tufanbarisyildirim.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Read basic info about an application from .apk file.",
+            "homepage": "https://github.com/tufanbarisyildirim/php-apk-parser",
+            "keywords": [
+                "android",
+                "apk",
+                "parser"
+            ],
+            "support": {
+                "issues": "https://github.com/tufanbarisyildirim/php-apk-parser/issues",
+                "source": "https://github.com/tufanbarisyildirim/php-apk-parser/tree/3.0"
+            },
+            "time": "2022-11-19T10:05:42+00:00"
         },
         {
             "name": "vlucas/valitron",

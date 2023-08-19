@@ -4,7 +4,8 @@ namespace Syskentokyo\AppDistribution;
 require_once( '../vendor/autoload.php' );
 
 
-require_once('../app/common/commonrequireall.php');
+require_once('./common/commonrequireall.php');
+
 use Valitron;
 
 $validatorGet = new Valitron\Validator($_GET);
@@ -60,12 +61,9 @@ for($i=1;$i < (count($dirArray)-2);$i++){
 }
 
 //アプリ詳細ページのURL
-$appDetaiPageURL = $appBaseURL ."/".DETAIL_APP_DIR;
-
-$appUploadPageURL = $appBaseURL ."/".UPLOAD_APP_DIR;
-
-$appManageDistributionPageURL = $appBaseURL ."/".MANAGE_DISTRIBUTION_DIR;
-
+$appListPageURL = $appBaseURL ."/".APP_LIST_DIR;
+$iosInstallPlistURL =$appBaseURL ."/".APP_IOS_INSTALL_PLIST_FILEPATH;
+$androidAPKURL =$appBaseURL ."/".APP_SAVEDIR.$appInfo->savedirname."/".SAVEDIR_APP_ANDROID_FILE_NAME;
 
 ?>
 <!doctype html>
@@ -76,7 +74,7 @@ $appManageDistributionPageURL = $appBaseURL ."/".MANAGE_DISTRIBUTION_DIR;
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-    <title>Done Upload </title>
+    <title>Install App</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
@@ -87,20 +85,25 @@ $appManageDistributionPageURL = $appBaseURL ."/".MANAGE_DISTRIBUTION_DIR;
 <?php
 require_once('./commonheader.php');
 ?>
-<div  class="mx-auto"  style="width: 610px;">
+<div  class="mx-auto"  style="width: 100%;">
+    <div class="mx-auto" style="width:95%">
 
-    <h1 class="mt-5">Done Upload</h1>
+    <h1 class="m-1">Install App</h1>
 
+    <div class="m-1 row g-3">
 
-
-    <div class="mt-5 row g-3">
-
-        <h3>Detail App</h3>
 
         <div class="col-12">
             <label>Data ID</label>
             <div class="input-group">
-              <?php echo $appInfo->dataID;  ?>
+                <?php echo $appInfo->dataID;  ?>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <label>Platform</label>
+            <div class="input-group">
+                <?php echo $selectPlatform->name;  ?>
             </div>
         </div>
 
@@ -112,6 +115,27 @@ require_once('./commonheader.php');
         </div>
 
 
+        <div class="col-12">
+            <label></label>
+            <div class="input-group">
+                <?php
+                if($selectPlatform === AppFilePlatform::iOS){
+                    $redirectURL = urlencode($iosInstallPlistURL ."?dataid=".$lastDataID . "&platform=".$selectPlatform->value);
+                    echo "<a class=\"btn btn-primary btn-lg col-6\" href=\"itms-services://?action=download-manifest&url=".$redirectURL."\">Install</a>";
+
+                }else if($selectPlatform === AppFilePlatform::Android){
+
+                    echo "<a class=\"btn btn-primary btn-lg col-6\" href=\"".$androidAPKURL."\">Install</a>";
+
+                }
+                ?>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="m-5 row g-3">
+        <h2>Detail App</h2>
 
         <div class="col-12">
             <label>App ID</label>
@@ -135,8 +159,6 @@ require_once('./commonheader.php');
             </div>
         </div>
 
-
-
         <div class="col-12">
             <label>Create Date</label>
             <div class="input-group">
@@ -144,18 +166,14 @@ require_once('./commonheader.php');
             </div>
         </div>
 
+
+
         <?php
         if($selectPlatform === AppFilePlatform::iOS){
 
             ?>
 
-            <div class="col-12">
-                <label>App File URL</label>
-                <div class="input-group">
 
-                    <a href="<?php echo $appDetaiPageURL."?dataid=".$lastDataID . "&platform=".$selectPlatform->value;  ?>" target="_blank">Detail App</a>
-                </div>
-            </div>
 
 
             <div class="col-12">
@@ -179,18 +197,12 @@ require_once('./commonheader.php');
                 </div>
             </div>
 
-        <?php
+            <?php
         }else if($selectPlatform ===  AppFilePlatform::Android){
 
-        ?>
+            ?>
 
-            <div class="col-12">
-                <label>App File URL</label>
-                <div class="input-group">
 
-                    <a href="<?php echo $appDetaiPageURL."?dataid=".$lastDataID . "&platform=".$selectPlatform->value;  ?>" target="_blank">Detail App</a>
-                </div>
-            </div>
 
             <div class="col-12">
                 <label>Min SDK Version</label>
@@ -208,14 +220,16 @@ require_once('./commonheader.php');
 
 
 
-       <?php
+            <?php
         }
         ?>
 
 
+
+
     </div>
 
-
+    </div>
 
 </div>
 
