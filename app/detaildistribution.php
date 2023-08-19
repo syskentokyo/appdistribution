@@ -84,8 +84,8 @@ $appCreateDistributionPageURL = $appBaseURL ."/".CREATE_DISTRIBUTION_DIR;
 <?php
 require_once('./commonheader.php');
 ?>
-
-<div  class="mx-auto"  style="width: 610px;">
+<div  class="mx-auto"  style="width: 100%;">
+    <div class="mx-auto" style="width:95%">
 
     <h1 class="mt-5">Distribution details</h1>
 
@@ -100,10 +100,12 @@ require_once('./commonheader.php');
             <label>Memo</label>
             <div class="input-group">
                 <?php echo str_replace("\n","</br>",$distributionInfo->detailmemo);  ?>
+
+                <br><br><br>
             </div>
         </div>
 
-
+        <div class="mx-auto m-1 row g-3  border" style="width: 95%;">
         <h4 class="mt-5">iOS</h4>
         <?php
         if($iosAppInfo != null){
@@ -158,7 +160,9 @@ require_once('./commonheader.php');
         }
 
         ?>
+        </div>
 
+        <div class="mx-auto m-1 row g-3  border" style="width: 95%;">
         <h4 class="mt-5">Android</h4>
 
         <?php
@@ -215,7 +219,7 @@ require_once('./commonheader.php');
 
         ?>
 
-
+        </div>
 
     </div>
 
@@ -227,7 +231,7 @@ require_once('./commonheader.php');
         </div>
     </div>
 
-
+    </div>
 
 </div>
 

@@ -91,14 +91,11 @@ $appCreateDistributionPageURL = $appBaseURL ."/".CREATE_DISTRIBUTION_DIR;
 <?php
 require_once('./commonheader.php');
 ?>
-<div  class="mx-auto"  style="width: 610px;">
+<div  class="mx-auto"  style="width: 100%;">
+    <div class="mx-auto" style="width:95%">
+    <h1 class="m-1">Distribution List</h1>
 
-    <h1 class="mt-5">Distribution List</h1>
-
-
-
-
-    <div class="mt-5 row g-3">
+    <div class="m-1 row g-3">
 
         <h3>List</h3>
 
@@ -123,7 +120,7 @@ require_once('./commonheader.php');
                     </div>
                 </div>
 
-                <div class="col-md-6 mt-3 mb-3  border">
+                <div class="col-md-6 mt-3 mb-3  border" style="width: 50%;">
                     <h3>iOS</h3>
                     <?php
                     if($distributionCollectionInfo->iosAppInfo !=null){
@@ -165,7 +162,7 @@ require_once('./commonheader.php');
 
                 </div>
 
-                <div class="col-md-6 mt-3 mb-3  border">
+                <div class="col-md-6 mt-3 mb-3  border" style="width: 50%;">
                     <h3>Android</h3>
                     <?php
                     if($distributionCollectionInfo->androidAppInfo !=null){
@@ -217,7 +214,7 @@ require_once('./commonheader.php');
     </div>
 
 
-
+    </div>
 </div>
 
 </body>

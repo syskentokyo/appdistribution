@@ -85,11 +85,12 @@ $androidAPKURL =$appBaseURL ."/".APP_SAVEDIR.$appInfo->savedirname."/".SAVEDIR_A
 <?php
 require_once('./commonheader.php');
 ?>
-<div  class="mx-auto"  style="width: 610px;">
+<div  class="mx-auto"  style="width: 100%;">
+    <div class="mx-auto" style="width:95%">
 
-    <h1 class="m-3">Install App</h1>
+    <h1 class="m-1">Install App</h1>
 
-    <div class="m-5 row g-3">
+    <div class="m-1 row g-3">
 
 
         <div class="col-12">
@@ -228,7 +229,7 @@ require_once('./commonheader.php');
 
     </div>
 
-
+    </div>
 
 </div>
 
