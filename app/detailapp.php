@@ -119,8 +119,8 @@ require_once('./commonheader.php');
             <div class="input-group">
                 <?php
                 if($selectPlatform === AppFilePlatform::iOS){
-
-                    echo "<a class=\"btn btn-primary btn-lg col-6\" href=\"itms-services://?action=app-manifest&url=".$iosInstallPlistURL ."?dataid=".$lastDataID . "&platform=".$selectPlatform->value."\">Install</a>";
+                    $redirectURL = urlencode($iosInstallPlistURL ."?dataid=".$lastDataID . "&platform=".$selectPlatform->value);
+                    echo "<a class=\"btn btn-primary btn-lg col-6\" href=\"itms-services://?action=download-manifest&url=".$redirectURL."\">Install</a>";
 
                 }else if($selectPlatform === AppFilePlatform::Android){
 

@@ -132,8 +132,8 @@ require_once('./commonheader.php');
                             <label><?php echo "#".$distributionCollectionInfo->iosAppInfo->dataID;?></label>
                             <div class="input-group">
                                 <?php
-
-                                    echo "<a class=\"btn btn-primary col-12\" href=\"itms-services://?action=app-manifest&url=".$iosInstallPlistURL ."?dataid=".$distributionCollectionInfo->iosAppInfo->dataID . "&platform=".AppFilePlatform::iOS->value."\">Install</a>";
+                                    $redirectURL = urlencode($iosInstallPlistURL ."?dataid=".$distributionCollectionInfo->iosAppInfo->dataID . "&platform=".AppFilePlatform::iOS->value);
+                                    echo "<a class=\"btn btn-primary col-12\" href=\"itms-services://?action=download-manifest&url=".$redirectURL."\">Install</a>";
 
                                 ?>
 
