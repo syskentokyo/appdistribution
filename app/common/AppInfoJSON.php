@@ -14,4 +14,6 @@ class AppInfoJSON{
 
     public $androidTargetSDK="";
 
+    public $iosProvisioningUDID = "";
+
 }

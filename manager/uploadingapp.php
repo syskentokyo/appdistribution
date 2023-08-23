@@ -131,11 +131,18 @@ if($selectPlatform === AppFilePlatform::iOS){
     //
     $infoPlistXML = new CFPropertyList( $infoPlistPath, CFPropertyList::FORMAT_BINARY );
 
+
     $infoPlistDataArray =  $infoPlistXML->toArray();
+
+
+///    echo '<pre>';
+//    var_dump( $infoPlistXML->toArray());
+//    echo '</pre>';
 
 //    echo '<pre>';
 //    var_dump( $infoPlistXML->toArray());
 //    echo '</pre>';
+//    exit();
 
     $appinfoJson->bundleName = $infoPlistDataArray["CFBundleName"];
     $appinfoJson->appid = $infoPlistDataArray["CFBundleIdentifier"];
@@ -144,8 +151,53 @@ if($selectPlatform === AppFilePlatform::iOS){
     $appinfoJson->minosverversion = $infoPlistDataArray["MinimumOSVersion"];
     $appinfoJson->appversion = $infoPlistDataArray["CFBundleShortVersionString"];
 
+    //プロビジョニング
+    $provisionFilePathArray= glob($zipTempDir.'/Payload/*.app/embedded.mobileprovision');
+    if(count($provisionFilePathArray) >= 1){
+
+        $provisionFilePath = $provisionFilePathArray[0];
+        $provisionFileData = file_get_contents($provisionFilePath);
+
+        if (preg_match('/<plist version="1.0">([\s\S]+)\<\/plist>/', $provisionFileData, $matches)) {
+            if(preg_match('/ProvisionedDevices([\s\S]+)TeamIdentifier/', $matches[1], $matches2)){
+
+
+                //
+                // 無理やり整理
+                //
+                $validUDIDTxt = str_replace("</key>", "",$matches2[1]);
+                $validUDIDTxt = str_replace("<key>", "",$validUDIDTxt);
+                $validUDIDTxt = str_replace("<array>", "",$validUDIDTxt);
+                $validUDIDTxt = str_replace("</array>", "",$validUDIDTxt);
+                $validUDIDTxt = str_replace("\n", "",$validUDIDTxt);
+                $validUDIDTxt = str_replace("</string>", "",$validUDIDTxt);
+                $validUDIDTxt = str_replace("	", "",$validUDIDTxt);
+
+
+
+                $validUDIDArray = explode("<string>", $validUDIDTxt);
+
+
+                $isDoneFirst  =false;
+                for($i =0;$i< count($validUDIDArray);$i++){
+                    $udidTxt =$validUDIDArray[$i];
+
+                    if($udidTxt!==""){
+                        if($isDoneFirst===false) {
+                            $appinfoJson->iosProvisioningUDID = $udidTxt;
+                            $isDoneFirst=true;
+                        }else{
+                            $appinfoJson->iosProvisioningUDID =  $appinfoJson->iosProvisioningUDID .",".$udidTxt;
+                        }
+                    }
+                }
+
+
+            }
+        }
+
+    }
 //
-// DBへ保存
 //
     $insertLastID = AppDBManager::InsertToiOSApp($appinfoJson,$saveDirName,$validatedMemo1);
 

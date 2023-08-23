@@ -197,6 +197,13 @@ require_once('./commonheader.php');
                 </div>
             </div>
 
+            <div class="col-12">
+                <label>UDID LIST</label>
+                <div class="input-group">
+                    <?php echo  str_replace(",", "</br>",$appInfo->appInfoJSON->iosProvisioningUDID); ?>
+                </div>
+            </div>
+
             <?php
         }else if($selectPlatform ===  AppFilePlatform::Android){
 

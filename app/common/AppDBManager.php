@@ -192,6 +192,12 @@ use PDO;
             $appInfoJSON->minosverversion = $appInfoJSONDic["minosverversion"];
             $appInfoJSON->appversion = $appInfoJSONDic["appversion"];
 
+            if(array_key_exists("iosProvisioningUDID",$appInfoJSONDic)){
+                $appInfoJSON->iosProvisioningUDID = $appInfoJSONDic["iosProvisioningUDID"];
+            }
+
+
+
             $appInfo->appInfoJSON = $appInfoJSON;
         }
 
@@ -245,6 +251,11 @@ use PDO;
              $appInfoJSON->androidMinSDK = $appInfoJSONDic["androidMinSDK"];
              $appInfoJSON->androidTargetSDK = $appInfoJSONDic["androidTargetSDK"];
              $appInfoJSON->appversion = $appInfoJSONDic["appversion"];
+
+             if(array_key_exists("iosProvisioningUDID",$appInfoJSONDic)){
+                 $appInfoJSON->iosProvisioningUDID = $appInfoJSONDic["iosProvisioningUDID"];
+             }
+
 
              $appInfo->appInfoJSON = $appInfoJSON;
          }
@@ -308,6 +319,10 @@ use PDO;
                  $appInfoJSON->minosverversion = $appInfoJSONDic["minosverversion"];
                  $appInfoJSON->appversion = $appInfoJSONDic["appversion"];
 
+                 if(array_key_exists("iosProvisioningUDID",$appInfoJSONDic)){
+                     $appInfoJSON->iosProvisioningUDID = $appInfoJSONDic["iosProvisioningUDID"];
+                 }
+
                  $appInfo->appInfoJSON = $appInfoJSON;
 
 
@@ -370,6 +385,10 @@ use PDO;
                  $appInfoJSON->androidMinSDK = $appInfoJSONDic["androidMinSDK"];
                  $appInfoJSON->androidTargetSDK = $appInfoJSONDic["androidTargetSDK"];
                  $appInfoJSON->appversion = $appInfoJSONDic["appversion"];
+
+                 if(array_key_exists("iosProvisioningUDID",$appInfoJSONDic)){
+                     $appInfoJSON->iosProvisioningUDID = $appInfoJSONDic["iosProvisioningUDID"];
+                 }
 
                  $appInfo->appInfoJSON = $appInfoJSON;
 
