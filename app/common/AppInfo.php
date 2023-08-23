@@ -3,11 +3,11 @@ namespace Syskentokyo\AppDistribution;
 
 class AppInfo{
 
-    public int $dataID;
+    public int $dataID=-999;
 
-    public String $savedirname;
+    public String $savedirname="";
 
-    public String $memo1;
+    public String $memo1="";
 
     public String $createtime;
 

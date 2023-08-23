@@ -125,7 +125,7 @@ require_once('./commonheader.php');
 
                 }else if($selectPlatform === AppFilePlatform::Android){
 
-                    echo "<a class=\"btn btn-primary btn-lg col-6\" href=\"".$androidAPKURL."\">Install</a>";
+                    echo "<a class=\"btn btn-success btn-lg col-6\" href=\"".$androidAPKURL."\">Install</a>";
 
                 }
                 ?>
@@ -194,6 +194,13 @@ require_once('./commonheader.php');
                 <label>Min OS Version</label>
                 <div class="input-group">
                     <?php echo $appInfo->appInfoJSON->minosverversion;  ?>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <label>UDID LIST</label>
+                <div class="input-group">
+                    <?php echo  str_replace(",", "</br>",$appInfo->appInfoJSON->iosProvisioningUDID); ?>
                 </div>
             </div>
 

@@ -173,7 +173,7 @@ require_once('./commonheader.php');
 
                                 <?php
                                     $androidAPKURL =$appBaseURL ."/".APP_SAVEDIR.$distributionCollectionInfo->androidAppInfo->savedirname."/".SAVEDIR_APP_ANDROID_FILE_NAME;
-                                    echo "<a class=\"btn btn-primary col-12\" href=\"".$androidAPKURL."\">Install</a>";
+                                    echo "<a class=\"btn  btn-success col-12\" href=\"".$androidAPKURL."\">Install</a>";
 
 
                                 ?>
