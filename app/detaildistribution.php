@@ -171,7 +171,7 @@ require_once('./commonheader.php');
             <div class="col-12">
                 <label>Android App ID</label>
                 <div class="input-group">
-                    <a href="<?php echo $appDetaiPageURL."?dataid=".$iosAppInfo->dataID . "&platform=".AppFilePlatform::Android->value;  ?>" target="_blank"><?php echo "#".$androidAppInfo->dataID;  ?></a>
+                    <a href="<?php echo $appDetaiPageURL."?dataid=".$androidAppInfo->dataID . "&platform=".AppFilePlatform::Android->value;  ?>" target="_blank"><?php echo "#".$androidAppInfo->dataID;  ?></a>
                 </div>
             </div>
 
@@ -188,7 +188,7 @@ require_once('./commonheader.php');
                 <div class="input-group">
                     <?php
                     $androidAPKURL =$appBaseURL ."/".APP_SAVEDIR.$androidAppInfo->savedirname."/".SAVEDIR_APP_ANDROID_FILE_NAME;
-                    echo "<a class=\"btn btn-primary col-6\" href=\"".$androidAPKURL."\">Install</a>";
+                    echo "<a class=\"btn  btn-success col-6\" href=\"".$androidAPKURL."\">Install</a>";
 
 
                     ?>

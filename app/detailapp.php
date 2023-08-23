@@ -125,7 +125,7 @@ require_once('./commonheader.php');
 
                 }else if($selectPlatform === AppFilePlatform::Android){
 
-                    echo "<a class=\"btn btn-primary btn-lg col-6\" href=\"".$androidAPKURL."\">Install</a>";
+                    echo "<a class=\"btn btn-success btn-lg col-6\" href=\"".$androidAPKURL."\">Install</a>";
 
                 }
                 ?>

@@ -235,6 +235,9 @@ use PDO;
          if( $res ) {
              $data = $stmt->fetch();
 
+             if($data==null){
+                 return $appInfo;
+             }
 
              //データ整理
              $appInfo->dataID = $data["id"];
