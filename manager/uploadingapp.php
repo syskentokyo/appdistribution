@@ -29,6 +29,15 @@ if (!isset($_POST['selectPlatform'])) {
     exit();
 }
 
+switch ($_FILES['appfile']['error']) {
+    case UPLOAD_ERR_OK:
+        break;
+    default:
+        exit();
+}
+
+
+
 
 $validatedMemo1 = htmlspecialchars($_POST['inputMemo1'], ENT_QUOTES, 'UTF-8');
 $validatedPlatform = htmlspecialchars($_POST['selectPlatform'], ENT_QUOTES, 'UTF-8');
@@ -92,7 +101,8 @@ if($selectPlatform === AppFilePlatform::iOS){
 }
 
 if($saveAppFilePath!=="") {
-    copy($uploadtedAppFile['tmp_name'], $saveAppFilePath);
+    move_uploaded_file($uploadtedAppFile['tmp_name'], $saveAppFilePath);
+    chmod($saveAppFilePath, 0644);
 }else{
     exit();
 }
