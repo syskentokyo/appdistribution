@@ -101,7 +101,12 @@ if($selectPlatform === AppFilePlatform::iOS){
 }
 
 if($saveAppFilePath!=="") {
-    move_uploaded_file($uploadtedAppFile['tmp_name'], $saveAppFilePath);
+
+    if(!move_uploaded_file($uploadtedAppFile['tmp_name'], $saveAppFilePath)){
+        //失敗時
+        exit();
+    }
+
     chmod($saveAppFilePath, 0644);
 }else{
     exit();
