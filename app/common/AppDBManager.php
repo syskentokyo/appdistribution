@@ -12,7 +12,7 @@ use PDO;
 
  class AppDBManager{
     private static function CreateDB():?PDO {
-        $dbpath = __DIR__ . "AppDBManager.php/" . DB_FILE_PATH ;
+        $dbpath = __DIR__ . "/" . DB_FILE_PATH ;
 
         $dboptions = [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
