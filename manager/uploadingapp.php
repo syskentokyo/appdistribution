@@ -100,6 +100,13 @@ if($selectPlatform === AppFilePlatform::iOS){
     $saveAppFilePath = $saveAppFileBaseFilePath .SAVEDIR_APP_ANDROID_FILE_NAME;
 }
 
+//ファイルが存在しないことを確認する
+if(file_exists($saveAppFilePath)===true){
+    //すでにファイルがある場合
+    exit();
+}
+
+
 if($saveAppFilePath!=="") {
 
     if(!move_uploaded_file($uploadtedAppFile['tmp_name'], $saveAppFilePath)){
